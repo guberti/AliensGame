@@ -13,37 +13,30 @@ import java.util.Random;
  */
 public class SpaceGrid {
     GameSpace[][] grid;
+    AlienContainer[] aliens;
     
-    public SpaceGrid (int gridSize) {
-        grid =  new GameSpace[gridSize][gridSize];
-        Random rand = new Random();
-        
-        // Add in a new subclass of Alien
-        while (true) {
-            int x = rand.nextInt(gridSize);
-            int y = rand.nextInt(gridSize);
-            // If the selected space on the grid is empty
-            if (grid[x][y] == null) {
-                // Place an alien into it and break
-                grid[x][y] = new Martian();
-                break;
-            }
-        }
+    public SpaceGrid (int gridSize, int alienCount) {
+        grid = new GameSpace[gridSize][gridSize];
+        aliens = new AlienContainer[alienCount];      
     }
     
     public void moveAliens() {
-        for (int i = 0; i < grid.length; i++) {
-            for (int k = 0; k < grid[i].length; k++) {
-                // If there is an alien at that poin
-                if (grid[i][k] != null) {
-                    try {
-                        
-                    } catch (Exception e) { // If the alien's program crashes
-                        // Kill the alien
-                        grid[i][k] = null;
-                    }
-                }
+        for (AlienContainer alien: aliens) {
+            try {
+                alien.move();
+            } catch (Exception e) {
+                System.out.println("An alien threw a " + e + ", it died.");
+                alien = null;
             }
         }
+        // Once the aliens have moved, have them fight each other if they are in
+        // the same game space
+        
+        for ()
+    }
+
+    void addAlien(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+class MovedIntoAlienException extends Exception {}

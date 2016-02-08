@@ -10,5 +10,9 @@ package consolealiensgame;
  * @author guberti
  */
 public class GameSpace {
+    public AlienContainer alien;
     
+    public void removeAlien() {
+        alien = null;
+    }
 }

@@ -12,9 +12,6 @@ package consolealiensgame;
 public abstract class Alien {
     // Constructor
     public Alien(){}
-    
-    // Method that will be called when the alien is asked to move
-    void move(){}
-    
-    // 
+     
+    public abstract MoveDir getMove();
 }

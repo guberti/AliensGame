@@ -9,16 +9,20 @@ package consolealiensgame;
  *
  * @author guberti
  */
-public class Martian extends Alien {
-    int currentDir;
+public class MoveDir {
+    int xChange;
+    int yChange;
     
-    public Martian() {
-        currentDir = 1;
+    public MoveDir(int xChange, int yChange) {
+        this.xChange = xChange;
+        this.yChange = yChange;
     }
     
-    // Martians move left, right, left, right
-    public MoveDir getMove() {
-        currentDir *= -1;
-        return new MoveDir(currentDir, 0);
+    public int x() {
+        return xChange;
+    }
+
+    public int y() {
+        return yChange;
     }
 }
