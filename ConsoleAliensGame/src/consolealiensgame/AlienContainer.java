@@ -13,15 +13,14 @@ public class AlienContainer {
     private final Alien alien;
     
     private int moveDist;
-    private String name;
     
     public int x;
     public int y;
     
     // Declare stats here
     
-    public AlienContainer(String name, int x, int y/*, Pass in class here*/) {
-        alien = new Martian();
+    public AlienContainer(int x, int y, Alien alien) {
+        this.alien = alien;
     }
     
     public void move() throws TooLargeMoveException {

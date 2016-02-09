@@ -32,11 +32,21 @@ public class SpaceGrid {
         // Once the aliens have moved, have them fight each other if they are in
         // the same game space
         
-        for ()
+        for (int i = 0; i < aliens.length; i++) {
+            for (int k = i + 1; i < aliens.length; i++) {
+                if (
+                        aliens[i].x == aliens[k].y &&
+                        aliens[i].x == aliens[k].y) {
+                    aliens[i] = null;
+                    aliens[k] = null;
+                }
+            }
+        }
     }
 
-    void addAlien(int i, int i0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void addAlien(int index, int x, int y, Alien alien) {
+        AlienContainer aC = new AlienContainer(2, 2, alien);
+        aliens[index] = aC;
     }
 }
 class MovedIntoAlienException extends Exception {}
