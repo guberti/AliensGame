@@ -14,4 +14,6 @@ public abstract class Alien {
     public Alien(){}
      
     public abstract MoveDir getMove();
+
+    public abstract boolean getFight();
 }

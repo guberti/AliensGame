@@ -32,6 +32,10 @@ public class AlienContainer {
         y += direction.y();
     }
     
+    public void encounter() {
+        return alien.getEncounter();
+    }
+    
     private void checkMove(MoveDir direction) throws TooLargeMoveException {
         // If the move is too far
         if (Math.pow(direction.x(), 2) + Math.pow(direction.y(), 2)

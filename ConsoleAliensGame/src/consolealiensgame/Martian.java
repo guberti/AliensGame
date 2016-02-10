@@ -21,4 +21,10 @@ public class Martian extends Alien {
         currentDir *= -1;
         return new MoveDir(currentDir, 0);
     }
+
+    // Martians are violent aliens, so they will always choose to fight
+    @Override
+    public int getFightPower() {
+        return true;
+    }
 }
