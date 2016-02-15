@@ -13,7 +13,7 @@ public abstract class Alien {
     // Constructor
     public Alien(){}
      
-    public abstract MoveDir getMove();
+    public abstract MoveDir getMove(AlienAPI api);
 
-    public abstract boolean getFight();
+    public abstract int getFightPower(AlienAPI api);
 }

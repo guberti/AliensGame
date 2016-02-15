@@ -17,14 +17,15 @@ public class Martian extends Alien {
     }
     
     // Martians move left, right, left, right
-    public MoveDir getMove() {
+    public MoveDir getMove(AlienAPI api) {
         currentDir *= -1;
         return new MoveDir(currentDir, 0);
     }
 
-    // Martians are violent aliens, so they will always choose to fight
     @Override
-    public int getFightPower() {
-        return true;
+    public int getFightPower(AlienAPI api) {
+        // Martians should fight with half the maximum amount of fight they
+        // could fight with
+        return Math.min(api.energy(), api.tech()) / 2;
     }
 }
