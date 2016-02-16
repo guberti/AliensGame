@@ -18,6 +18,7 @@ public class AlienContainer {
     
     public int x;
     public int y;
+    public boolean action; // Whether the alien has performed an action this turn
     
     // Declare stats here
     
@@ -33,6 +34,10 @@ public class AlienContainer {
         checkMove(direction); // Throws an exception if illegal
         x += direction.x();
         y += direction.y();
+    }
+    
+    public void kill() {
+        energy = 0;
     }
     
     public int fight() throws NotEnoughEnergyException, NotEnoughTechException {

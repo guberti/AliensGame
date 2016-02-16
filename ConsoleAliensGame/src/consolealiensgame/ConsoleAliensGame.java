@@ -16,7 +16,7 @@ public class ConsoleAliensGame {
      */
     public static void main(String[] args) {
         SpaceGrid grid = new SpaceGrid(5, 1);
-        grid.addAlien(0, 2, 2, new Martian());
+        grid.addAlien(2, 2, new Martian());
         
     }
     
