@@ -90,6 +90,15 @@ public class SpaceGrid {
         }
     }
     
+    public void removeDeadAliens() {
+        for (int i = 0; i < aliens.size(); i++) {
+            if (aliens.get(i).energy <= 0) {
+                System.out.println("An alien ran out of energy and died");
+                aliens.remove(i);
+            }
+        }
+    }
+    
     private int maxValue(int[] array) {
         int max = Integer.MIN_VALUE;
         for (int item : array) {
