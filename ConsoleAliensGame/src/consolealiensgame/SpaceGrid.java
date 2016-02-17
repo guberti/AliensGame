@@ -99,6 +99,12 @@ public class SpaceGrid {
         }
     }
     
+    public void resetMoves() {
+        for (AlienContainer alien : aliens) {
+            alien.action = false;
+        }
+    }
+    
     private int maxValue(int[] array) {
         int max = Integer.MIN_VALUE;
         for (int item : array) {
