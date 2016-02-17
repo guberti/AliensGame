@@ -28,4 +28,8 @@ public class Martian extends Alien {
         // could fight with
         return Math.min(api.energy(), api.tech()) / 2;
     }
+    
+    public Action getAction(AlienAPI api) {
+        return new Action(1, 0);
+    }
 }
