@@ -105,6 +105,46 @@ public class SpaceGrid {
         });
     }
     
+    public void performAlienActions() {
+        
+        // Obtain all actions before enacting any of them
+        Action[] actions = new Action[aliens.size()];
+        
+        for (int i = 0; i < aliens.size(); i++) {
+            try {
+                // Note: getAction() checks validity
+                actions[i] = aliens.get(i).getAction(); 
+            } catch (Exception ex) {
+                actions[i] = new Action(0);
+                aliens.get(i).kill();
+                Logger.getLogger(SpaceGrid.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        for (int i = 0; i < actions.length; i++) {
+            switch (actions[i].code) {
+                case 1: // Gain energy
+                    aliens.get(i).energy += Math.floor(aliens.get(i).tech/10) + 1;
+                    continue;
+                case 2: // Research tech
+                    aliens.get(i).energy -= aliens.get(i).tech;
+                    aliens.get(i).tech++;
+                    continue;
+                case 3: // Spawn offspring
+                    aliens.get(i).energy -= 3 + actions[i].power;
+                    
+                    // Add in the alien to the end of the list so actions
+                    // are not executed on it this turn
+                    // TODO add code to spawn species relevant offspring here
+                    Alien alien = new Martian();
+                    
+                    aliens.add(new AlienContainer(
+                        aliens.get(i).x, 
+                        aliens.get(i).y,
+                        alien, actions[i].power, 1));
+            }
+        }
+    }
     
     private int maxValue(int[] array) {
         int max = Integer.MIN_VALUE;
@@ -117,7 +157,7 @@ public class SpaceGrid {
     }
     
     public void addAlien(int x, int y, Alien alien) {
-        AlienContainer aC = new AlienContainer(x, y, alien);
+        AlienContainer aC = new AlienContainer(x, y, alien, 1, 1);
         aliens.add(aC);
     }
     

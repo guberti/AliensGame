@@ -22,9 +22,12 @@ public class AlienContainer {
     
     // Declare stats here
     
-    public AlienContainer(int x, int y, Alien alien) {
+    public AlienContainer(int x, int y, Alien alien, int energy, int tech) {
         this.alien = alien;
+        this.energy = energy;
+        this.tech = tech;
         this.api = new AlienAPI(this);
+        
     }
     
     public void move() throws NotEnoughTechException {
@@ -38,6 +41,28 @@ public class AlienContainer {
     
     public void kill() {
         energy = 0;
+    }
+    
+    public Action getAction() throws NotEnoughEnergyException, UnknownActionException {
+        Action action = alien.getAction(api);
+        switch (action.code) {
+            case 0: // Anything where no power is required
+            case 1:
+                return new Action (action.code);
+            case 2: // Research technology
+                if (tech > energy) { // If the tech can't be researched due to lack of energy
+                    throw new NotEnoughEnergyException();
+                }
+                // Otherwise
+                return new Action (2, tech);
+            case 3: // Spawn
+                if (action.power + 3 > energy) {
+                    throw new NotEnoughEnergyException();
+                }
+                return action;
+            default:
+                throw new UnknownActionException();
+        }
     }
     
     public int fight() throws NotEnoughEnergyException, NotEnoughTechException {
@@ -71,3 +96,4 @@ public class AlienContainer {
 
 class NotEnoughEnergyException extends Exception {}
 class NotEnoughTechException extends Exception {}
+class UnknownActionException extends Exception {}

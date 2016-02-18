@@ -30,6 +30,6 @@ public class Martian extends Alien {
     }
     
     public Action getAction(AlienAPI api) {
-        return new Action(1, 0);
+        return new Action(1);
     }
 }
