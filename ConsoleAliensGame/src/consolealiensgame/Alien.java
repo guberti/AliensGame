@@ -13,5 +13,9 @@ public abstract class Alien {
     // Constructor
     public Alien(){}
      
-    public abstract MoveDir getMove();
+    public abstract MoveDir getMove(AlienAPI api);
+
+    public abstract int getFightPower(AlienAPI api);
+
+    public abstract Action getAction(AlienAPI api);
 }

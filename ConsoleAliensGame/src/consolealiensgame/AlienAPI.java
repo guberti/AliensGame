@@ -9,15 +9,18 @@ package consolealiensgame;
  *
  * @author guberti
  */
-public class ConsoleAliensGame {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        SpaceGrid grid = new SpaceGrid(5, 1);
-        grid.addAlien(2, 2, new Martian());
-        
+public class AlienAPI {
+    private AlienContainer aC;
+    
+    AlienAPI(AlienContainer aC) {
+        this.aC = aC;
     }
     
+    public int energy() {
+        return aC.energy;
+    }
+    
+    public int tech() {
+        return aC.tech;
+    }
 }
