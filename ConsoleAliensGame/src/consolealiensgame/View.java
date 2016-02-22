@@ -29,17 +29,19 @@ public class View {
         this.topY = topY;
     }
     
-    public boolean isAlienAtPos(int x, int y) throws CantSeeSquareException {
+    public int getEnergyAtPos(int x, int y) throws CantSeeSquareException {
         if (topX + board.length > x ||
                 topX < x ||
                 topY + board.length > y ||
                 topY < y) {
             throw new CantSeeSquareException();
         }
-        return board[topX - x][topY - y] > -1;
+        return board[topX - x][topY - y];
     }
     
-    
+    public boolean isAlienAtPos(int x, int y) throws CantSeeSquareException {
+        return getEnergyAtPos(x, y) > -1;
+    }
 }
 
 class CantSeeSquareException extends Exception {}
