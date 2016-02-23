@@ -23,4 +23,12 @@ public class AlienAPI {
     public int tech() {
         return aC.tech;
     }
+    
+    public int x() {
+        return aC.x;
+    }
+    
+    public int y() {
+        return aC.y;
+    }
 }

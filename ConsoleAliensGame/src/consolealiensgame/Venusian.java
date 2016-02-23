@@ -8,16 +8,18 @@ package consolealiensgame;
  * @author guberti
  */
 public class Venusian extends Alien {
-    int currentDir;
-    
+    int currentDirX;
+    int currentDirY;
     public Venusian() {
-        currentDir = 1;
+        currentDirX = 0;
+        currentDirY = 0;
+        
     }
     
-    // Martians move left, right, left, right
+    // Move Function
     public MoveDir getMove(AlienAPI api) {
-        currentDir *= -1;
-        return new MoveDir(currentDir, 0);
+        
+        return new MoveDir(currentDirX, currentDirY);
     }
 
     @Override
