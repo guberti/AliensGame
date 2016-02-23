@@ -15,7 +15,7 @@ public class ConsoleAliensGame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SpaceGrid grid = new SpaceGrid(5, 1);
+        SpaceGrid grid = new SpaceGrid();
         grid.addAlien(2, 2, new Martian());
         
     }
