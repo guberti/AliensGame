@@ -26,6 +26,8 @@ package consolealiensgame;
  * 1 --- "Gain" --------- Gain energy
  * 2 --- "Research" ----- Research technology
  * 3 --- "Spawn" -------- Spawn offspring
+ * 4 --- "Trade" -------- offer to Trade with other aliens on same spot
+ * 5 --- "Fight" -------- fight other Aliens on same spot
 */
 public class Action {
     public int code;

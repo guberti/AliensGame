@@ -66,7 +66,7 @@ public class AlienContainer {
     }
     
     public int fight() throws NotEnoughEnergyException, NotEnoughTechException {
-        int fightPower = alien.getFightPower(api);
+        int fightPower = 0; //alien.getFightPower(api); GM need to fix this up after reconciling fighting into Action
         
         // If the alien cannot fight with the amount of energy it wants
         // Throw the appropriate exception
