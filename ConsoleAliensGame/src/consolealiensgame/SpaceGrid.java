@@ -18,8 +18,7 @@ public class SpaceGrid {
     List<AlienContainer> aliens; // Aliens are born and die, so
     // our list needs to be able to grow and shrink
     
-    public SpaceGrid (int gridSize, int alienCount) {
-        grid = new GameSpace[gridSize][gridSize];
+    public SpaceGrid () {
         aliens = new ArrayList<>(); // AlienContainer type is inferred    
     }
     
@@ -111,9 +110,12 @@ public class SpaceGrid {
         Action[] actions = new Action[aliens.size()];
         
         for (int i = 0; i < aliens.size(); i++) {
+            View view = getAlienView(i);
+            
             try {
                 // Note: getAction() checks validity
-                actions[i] = aliens.get(i).getAction(); 
+                actions[i] = aliens.get(i).getAction(view);
+                
             } catch (Exception ex) {
                 actions[i] = new Action(0);
                 aliens.get(i).kill();
@@ -146,6 +148,29 @@ public class SpaceGrid {
         }
     }
     
+    private View getAlienView(int index) {
+        // Create the alien's view
+        int size = aliens.get(index).tech;
+        int cornerX = aliens.get(index).x - size;
+        int cornerY = aliens.get(index).y - size;
+        // Bottom left corner
+        int[][] view = new int[size * 2 + 1][size * 2 + 1];
+        for (int k = 0; k < aliens.size(); k++) {
+            if (k != index) { // The alien does not show itself on the map
+                AlienContainer alien = aliens.get(k);
+                if ( // If the alien can be seen
+                        alien.x >= cornerX &&
+                        alien.x <= cornerX + size * 2 &&
+                        alien.y >= cornerY &&
+                        alien.y <= cornerY + size * 2) {
+                    view[alien.x - cornerX][alien.y - cornerY] = alien.energy;
+                }
+            }
+        }
+
+        return new View(cornerX, cornerY, view);
+    }
+            
     private int maxValue(int[] array) {
         int max = Integer.MIN_VALUE;
         for (int item : array) {
@@ -156,7 +181,7 @@ public class SpaceGrid {
         return max;
     }
     
-    public void addAlien(int x, int y, Alien alien) {
+    void addAlien(int x, int y, Alien alien) {
         AlienContainer aC = new AlienContainer(x, y, alien, 1, 1);
         aliens.add(aC);
     }

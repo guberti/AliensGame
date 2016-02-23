@@ -43,8 +43,8 @@ public class AlienContainer {
         energy = 0;
     }
     
-    public Action getAction() throws NotEnoughEnergyException, UnknownActionException {
-        Action action = alien.getAction(api);
+    public Action getAction(View view) throws NotEnoughEnergyException, UnknownActionException {
+        Action action = alien.getAction(api, view);
         switch (action.code) {
             case 0: // Anything where no power is required
             case 1:

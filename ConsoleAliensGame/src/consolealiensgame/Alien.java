@@ -17,5 +17,5 @@ public abstract class Alien {
 
     public abstract int getFightPower(AlienAPI api);
 
-    public abstract Action getAction(AlienAPI api);
+    public abstract Action getAction(AlienAPI api, View view);
 }

@@ -27,7 +27,7 @@ public class Martian extends Alien {
         return Math.min(api.energy(), api.tech()) / 2;
     }
     
-    public Action getAction(AlienAPI api) {
+    public Action getAction(AlienAPI api, View view) {
         return new Action(1);
     }
 }
