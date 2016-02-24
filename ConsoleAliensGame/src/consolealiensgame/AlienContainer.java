@@ -30,9 +30,9 @@ public class AlienContainer {
         
     }
     
-    public void move() throws NotEnoughTechException {
+    public void move(View view) throws NotEnoughTechException {
         // Whether the move goes off the board will be determined by the grid
-        
+        api.view = view;
         MoveDir direction = alien.getMove(api);
         checkMove(direction); // Throws an exception if illegal
         x += direction.x();
@@ -44,7 +44,8 @@ public class AlienContainer {
     }
     
     public Action getAction(View view) throws NotEnoughEnergyException, UnknownActionException {
-        Action action = alien.getAction(api, view);
+        api.view = view;
+        Action action = alien.getAction(api);
         switch (action.code) {
             case 0: // Anything where no power is required
             case 1:
