@@ -47,16 +47,16 @@ public class AlienContainer {
         api.view = view;
         Action action = alien.getAction(api);
         switch (action.code) {
-            case 0: // Anything where no power is required
-            case 1:
+            case None: 
+            case Gain:
                 return new Action (action.code);
-            case 2: // Research technology
+            case Research: 
                 if (tech > energy) { // If the tech can't be researched due to lack of energy
                     throw new NotEnoughEnergyException();
                 }
                 // Otherwise
-                return new Action (2, tech);
-            case 3: // Spawn
+                return new Action (ActionCode.Research, tech);
+            case Spawn: 
                 if (action.power + 3 > energy) {
                     throw new NotEnoughEnergyException();
                 }

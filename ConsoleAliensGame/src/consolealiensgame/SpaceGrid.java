@@ -118,7 +118,7 @@ public class SpaceGrid {
                 actions[i] = aliens.get(i).getAction(view);
                 
             } catch (Exception ex) {
-                actions[i] = new Action(0);
+                actions[i] = new Action(ActionCode.None);
                 aliens.get(i).kill();
                 Logger.getLogger(SpaceGrid.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -126,14 +126,14 @@ public class SpaceGrid {
         
         for (int i = 0; i < actions.length; i++) {
             switch (actions[i].code) {
-                case 1: // Gain energy
+                case Gain: 
                     aliens.get(i).energy += Math.floor(aliens.get(i).tech/10) + 1;
                     continue;
-                case 2: // Research tech
+                case Research: 
                     aliens.get(i).energy -= aliens.get(i).tech;
                     aliens.get(i).tech++;
                     continue;
-                case 3: // Spawn offspring
+                case Spawn: 
                     aliens.get(i).energy -= 3 + actions[i].power;
                     
                     // Add in the alien to the end of the list so actions

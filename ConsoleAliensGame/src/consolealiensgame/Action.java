@@ -30,15 +30,15 @@ package consolealiensgame;
  * 5 --- "Fight" -------- fight other Aliens on same spot
 */
 public class Action {
-    public int code;
+    public ActionCode code;
     public int power;
     
-    public Action (int code, int power) {
+    public Action (ActionCode code, int power) {
         this.code = code;
         this.power = power;
     }
     
-    public Action (int code) {
+    public Action (ActionCode code) {
         this.code = code;
     }
     // TODO add in code for a constructor where the name of the action and the
