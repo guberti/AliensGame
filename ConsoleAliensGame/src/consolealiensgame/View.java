@@ -11,7 +11,16 @@ package consolealiensgame;
  */
 public class View {
     
+    private AlienContainer[] aCs;
+    int topX;
+    int topY;
+    int[][] board;
+    
     public View (AlienContainer[] aCs) {
+        this.aCs = aCs;
+    }
+    
+    public View (int cornerx, int cornery, AlienContainer[] aCs) {
         this.aCs = aCs;
     }
     

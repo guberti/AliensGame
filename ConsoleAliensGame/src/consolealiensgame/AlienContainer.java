@@ -44,22 +44,22 @@ public class AlienContainer {
     }
     
     public Action getAction(View view) throws NotEnoughEnergyException, UnknownActionException {
-        Action action = alien.getAction(api, view);
-        switch (action.code) {
-            case 0: // Anything where no power is required
-            case 1:
-                return new Action (action.code);
-            case 2: // Research technology
+        Action localaction = alien.getAction(api, view);
+        switch (localaction.code) {
+            case None:
+            case Gain:
+                return new Action (localaction.code);
+            case Research:
                 if (tech > energy) { // If the tech can't be researched due to lack of energy
                     throw new NotEnoughEnergyException();
                 }
                 // Otherwise
-                return new Action (2, tech);
-            case 3: // Spawn
-                if (action.power + 3 > energy) {
+                return new Action (ActionCode.Research, tech);
+            case Spawn:
+                if (localaction.power + 3 > energy) {
                     throw new NotEnoughEnergyException();
                 }
-                return action;
+                return localaction;
             default:
                 throw new UnknownActionException();
         }
