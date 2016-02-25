@@ -11,6 +11,7 @@ package consolealiensgame;
  */
 public class AlienAPI {
     private AlienContainer aC;
+    View view;
     
     AlienAPI(AlienContainer aC) {
         this.aC = aC;
@@ -30,5 +31,9 @@ public class AlienAPI {
     
     public int y() {
         return aC.y;
+    }
+    
+    public View view() {
+        return view;
     }
 }

@@ -24,8 +24,9 @@ public class SpaceGrid {
     
     public void moveAliens() {
         for (int i = 0; i < aliens.size(); i++) {
+            View view = getAlienView(i);
             try {
-                aliens.get(i).move();
+                aliens.get(i).move(view);
             } catch (Exception ex) {
                 Logger.getLogger(SpaceGrid.class.getName()).log(Level.SEVERE, null, ex);
                 aliens.remove(i);
@@ -154,7 +155,8 @@ public class SpaceGrid {
         int cornerX = aliens.get(index).x - size;
         int cornerY = aliens.get(index).y - size;
         // Bottom left corner
-        int[][] view = new int[size * 2 + 1][size * 2 + 1];
+        List<AlienContainer> view = new ArrayList<>();
+        
         for (int k = 0; k < aliens.size(); k++) {
             if (k != index) { // The alien does not show itself on the map
                 AlienContainer alien = aliens.get(k);
@@ -163,12 +165,12 @@ public class SpaceGrid {
                         alien.x <= cornerX + size * 2 &&
                         alien.y >= cornerY &&
                         alien.y <= cornerY + size * 2) {
-                    view[alien.x - cornerX][alien.y - cornerY] = alien.energy;
+                    view.add(alien);
                 }
             }
         }
 
-        return new View(cornerX, cornerY, view);
+        return new View(view, cornerX, cornerY, size);
     }
             
     private int maxValue(int[] array) {
