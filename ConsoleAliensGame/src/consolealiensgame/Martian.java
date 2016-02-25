@@ -22,7 +22,7 @@ public class Martian extends Alien {
 
     
     public Action getAction(AlienAPI api) {
-        return new Action(1);
+        return new Action(ActionCode.Gain);
     }
     
     public void processResults(AlienAPI api) {
