@@ -22,25 +22,23 @@ package consolealiensgame;
 
 /* ActionCode Correspondence Table (will grow as actions are added)
  *
- * "None" --------- Perform no action
- * "Gain" --------- Gain energy
- * "Research" ----- Research technology
- * "Spawn" -------- Spawn offspring
- * "Trade" -------- offer to Trade with other aliens on same spot
- * "Fight" -------- fight other Aliens on same spot
+ * 0 --- "" ------------- Perform no action
+ * 1 --- "Gain" --------- Gain energy
+ * 2 --- "Research" ----- Research technology
+ * 3 --- "Spawn" -------- Spawn offspring
+ * 4 --- "Trade" -------- offer to Trade with other aliens on same spot
+ * 5 --- "Fight" -------- fight other Aliens on same spot
 */
-
-
 public class Action {
-    public ActionCode code;
+    public int code;
     public int power;
     
-    public Action (ActionCode code, int power) {
+    public Action (int code, int power) {
         this.code = code;
         this.power = power;
     }
     
-    public Action (ActionCode code) {
+    public Action (int code) {
         this.code = code;
     }
     // TODO add in code for a constructor where the name of the action and the

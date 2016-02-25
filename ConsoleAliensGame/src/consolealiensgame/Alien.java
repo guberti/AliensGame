@@ -15,7 +15,7 @@ public abstract class Alien {
      
     public abstract MoveDir getMove(AlienAPI api);
 
-    public abstract Action getAction(AlienAPI api, View view);
+    public abstract Action getAction(AlienAPI api);
     
     public abstract void processResults(AlienAPI api);
 }
