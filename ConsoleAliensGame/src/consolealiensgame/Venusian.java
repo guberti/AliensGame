@@ -21,20 +21,11 @@ public class Venusian extends Alien {
         
         return new MoveDir(currentDirX, currentDirY);
     }
-
-    /*@Override
-    public int getFightPower(AlienAPI api) {
-        // Martians should fight with half the maximum amount of fight they
-        // could fight with
-        return Math.min(api.energy(), api.tech()) / 2;
-    }*/
     
     public Action getAction(AlienAPI api) {
-        return new Action(1);
+        return new Action(ActionCode.Gain);
     }
-
-    @Override
     public void processResults(AlienAPI api) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return;
     }
 }
