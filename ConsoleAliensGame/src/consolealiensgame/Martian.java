@@ -8,24 +8,41 @@ package consolealiensgame;
  * @author guberti
  */
 public class Martian extends Alien {
-    int currentDir;
+    int HorizontalMove;
+    int VerticalMove;
     
     public Martian() {
-        currentDir = 1;
+        HorizontalMove = 0;
+        VerticalMove = 0;
     }
     
     // Martians move left, right, left, right
     public MoveDir getMove(AlienAPI api) {
-        currentDir *= -1;
-        return new MoveDir(currentDir, 0);
+        return new MoveDir(0, 0);
     }
 
-    
     public Action getAction(AlienAPI api) {
-        return new Action(1);
+        if(api.view.isAlienAtPos(api.x(), api.y()))
+        {
+            return new Action(ActionCode.Fight);
+        }
+        else if(api.energy()< 2)
+        {
+            return new Action(ActionCode.Gain);
+        }
+        else if(api.energy() < 4)
+        {
+            return new Action(ActionCode.Research);
+        }
+        else
+        {
+            return new Action(ActionCode.Spawn);
+        }
+        
     }
-    
+
+    @Override
     public void processResults(AlienAPI api) {
-        return;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
