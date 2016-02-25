@@ -17,7 +17,17 @@ public class ConsoleAliensGame {
     public static void main(String[] args) {
         SpaceGrid grid = new SpaceGrid();
         grid.addAlien(2, 2, new Martian());
+        grid.addAlien(2, 4, new Martian());
+        int turns = 100;
         
+        for (int i = 0; i < turns; i++) {
+            grid.moveAliens();
+            grid.performAlienActions();
+            grid.removeDeadAliens();
+            grid.resetMoves();
+        }
+        
+        //grid.printAlienAttributes();
     }
     
 }
