@@ -48,15 +48,21 @@ public class Dalek extends Alien
     {
         View view = api.view();
 
+        // catch and shenanigans
         try
         {
+            // is there another alien on our position?
             if (view.isAlienAtPos(api.x(), api.y()))
             {
-                if (api.energy() < 2)
+                // if so, do we have any energy?
+                if (api.energy() < 3)
                 {
+                    // no, lie still and start praying
                     return new Action (ActionCode.Gain);
                 }
-                return new Action (ActionCode.Fight, Math.max(api.energy() - 2, 2));
+                
+                // or, spend our energy on fighting
+                return new Action (ActionCode.Fight, api.energy() - 2);
             }
         } catch (Exception e)
         {
