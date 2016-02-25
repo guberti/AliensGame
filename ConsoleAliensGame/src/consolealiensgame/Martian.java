@@ -21,7 +21,7 @@ public class Martian extends Alien {
     }
 
     
-    public Action getAction(AlienAPI api, View view) {
+    public Action getAction(AlienAPI api) {
         return new Action(1);
     }
     
