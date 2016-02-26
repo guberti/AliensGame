@@ -5,6 +5,10 @@
  */
 package consolealiensgame;
 
+import java.lang.reflect.Constructor;
+import alieninterfaces.*;
+import stockaliens.*;
+
 /**
  *
  * @author guberti
@@ -18,6 +22,14 @@ public class ConsoleAliensGame {
         SpaceGrid grid = new SpaceGrid();
         grid.addAlien(2, 2, new Martian());
         
+        try
+        {
+            Constructor<?> cs = JARLoader.Load("stockaliens", "Dalek");
+            Alien a = (Alien) cs.newInstance();
+        } catch (Throwable t)
+        {
+            t.printStackTrace();
+        }
     }
     
 }

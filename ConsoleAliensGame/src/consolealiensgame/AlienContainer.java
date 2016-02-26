@@ -5,6 +5,8 @@
  */
 package consolealiensgame;
 
+import alieninterfaces.*;
+
 /**
  *
  * @author guberti
@@ -30,7 +32,7 @@ public class AlienContainer {
         
     }
     
-    public void move(View view) throws NotEnoughTechException {
+    public void move(ViewImplementation view) throws NotEnoughTechException {
         // Whether the move goes off the board will be determined by the grid
         api.view = view;
         MoveDir direction = alien.getMove(api);
@@ -43,7 +45,7 @@ public class AlienContainer {
         energy = 0;
     }
     
-    public Action getAction(View view) throws NotEnoughEnergyException, UnknownActionException {
+    public Action getAction(ViewImplementation view) throws NotEnoughEnergyException, UnknownActionException {
         api.view = view;
         Action action = alien.getAction(api);
         switch (action.code) {

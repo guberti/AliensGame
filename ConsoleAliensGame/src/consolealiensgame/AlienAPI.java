@@ -5,35 +5,37 @@
  */
 package consolealiensgame;
 
+import alieninterfaces.*;
+
 /**
  *
  * @author guberti
  */
-public class AlienAPI {
+public class AlienAPI implements Context {
     private AlienContainer aC;
-    View view;
+    ViewImplementation view;
     
     AlienAPI(AlienContainer aC) {
         this.aC = aC;
     }
     
-    public int energy() {
+    public int getEnergy() {
         return aC.energy;
     }
     
-    public int tech() {
+    public int getTech() {
         return aC.tech;
     }
     
-    public int x() {
+    public int getX() {
         return aC.x;
     }
     
-    public int y() {
+    public int getY() {
         return aC.y;
     }
     
-    public View view() {
+    public View getView() {
         return view;
     }
 }

@@ -6,25 +6,28 @@
 package consolealiensgame;
 
 import java.util.List;
+import alieninterfaces.*;
 
 /**
  *
  * @author guberti
  */
-public class View {
+public class ViewImplementation implements View {
     
     private final List<AlienContainer> aCs;
     private final int bottomX;
     private final int bottomY;
     private final int size;
     
-    public View (List<AlienContainer> aCs, int bottomX, int bottomY, int size) {
+    
+    public ViewImplementation (List<AlienContainer> aCs, int bottomX, int bottomY, int size) {
         this.aCs = aCs;
         this.bottomX = bottomX;
         this.bottomY = bottomY;
         this.size = size;
     }
     
+    @Override
     public int getEnergyAtPos(int x, int y) throws CantSeeSquareException {
         if (bottomX + 2 * size < x ||
                 bottomX > x ||
@@ -40,13 +43,17 @@ public class View {
         return -1;
     }
     
+    @Override
     public boolean isAlienAtPos(int x, int y) throws CantSeeSquareException {
         return getEnergyAtPos(x, y) > -1;
     }
     
-    public int[] getClosestAlienPos(int x, int y) throws NoVisibleAliensException {
+    @Override
+    public int[] getClosestAlienPos(int x, int y) {
         if (aCs.isEmpty()) { // If there are no visible aliens
-            throw new NoVisibleAliensException();
+            //throw new NoVisibleAliensException();
+            int [] invalid_pos = {Integer.MAX_VALUE, Integer.MAX_VALUE};
+            return invalid_pos;
         }
         
         // Returns an array of two numbers corresponding to the x and y of the alien
@@ -76,6 +83,3 @@ public class View {
         return distance + (int) Math.pow(Math.abs(y1 - y2), 2);
     }
 }
-
-class CantSeeSquareException extends Exception {}
-class NoVisibleAliensException extends Exception {}

@@ -1,13 +1,15 @@
 /*
  * 
  */
-package consolealiensgame;
+package stockaliens;
+
+import alieninterfaces.*;
 
 /**
  *
  * @author guberti
  */
-public class Martian extends Alien {
+public class Martian implements Alien {
     int currentDir;
     
     public Martian() {
@@ -15,17 +17,17 @@ public class Martian extends Alien {
     }
     
     // Martians move left, right, left, right
-    public MoveDir getMove(AlienAPI api) {
+    public MoveDir getMove(Context api) {
         currentDir *= -1;
         return new MoveDir(currentDir, 0);
     }
 
     
-    public Action getAction(AlienAPI api) {
+    public Action getAction(Context api) {
         return new Action(ActionCode.Gain);
     }
     
-    public void processResults(AlienAPI api) {
+    public void processResults(Context api) {
         return;
     }
 }
