@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package consolealiensgame;
+package stockaliens;
 
+import alieninterfaces.*;
 import java.util.Random;
 
 /**
  *
  * @author gmein
  */
-public class Dalek extends Alien
+public class Dalek implements Alien
 {
     Random rand;
     
@@ -21,12 +22,19 @@ public class Dalek extends Alien
     }
 
     // Martians move left, right, left, right
-    public MoveDir getMove(AlienAPI api)
+    public MoveDir getMove(Context api)
     {
+        // test code for JAR loader
+        if (api == null) 
+        {
+            System.out.println("Test of dynamic Dalek loader successful");
+            return null;
+        }
+        
         int move_energy;
         
         // don't move more than you have tech
-        move_energy = Math.min(api.energy(), api.tech());
+        move_energy = Math.min(api.getEnergy(), api.getTech());
         // don't move more than 5, leave energy for other stuff
         move_energy = Math.min(move_energy, 5);
         
@@ -38,31 +46,31 @@ public class Dalek extends Alien
         int y = move_energy;
         
         // don't move off the board
-        x = Math.min(api.x(), x);
-        y = Math.min(api.y(), y);
+        x = Math.min(api.getX(), x);
+        y = Math.min(api.getY(), y);
                 
         return new MoveDir(x, y);
     }
 
-    public Action getAction(AlienAPI api)
+    public Action getAction(Context api)
     {
-        View view = api.view();
+        View view = api.getView();
 
         // catch and shenanigans
         try
         {
             // is there another alien on our position?
-            if (view.isAlienAtPos(api.x(), api.y()))
+            if (view.isAlienAtPos(api.getX(), api.getY()))
             {
                 // if so, do we have any energy?
-                if (api.energy() < 3)
+                if (api.getEnergy() < 3)
                 {
                     // no, lie still and start praying
                     return new Action (ActionCode.Gain);
                 }
                 
                 // or, spend our energy on fighting
-                return new Action (ActionCode.Fight, api.energy() - 2);
+                return new Action (ActionCode.Fight, api.getEnergy() - 2);
             }
         } catch (Exception e)
         {
@@ -74,16 +82,19 @@ public class Dalek extends Alien
         // if we have spare energy, research tech
         //
         
-        if (api.energy() > (api.tech() + 2))
+        if (api.getEnergy() > (api.getTech() + 2))
         {
             return new Action(ActionCode.Research);
         }
         return new Action(ActionCode.Gain);
     }
 
-    public void processResults(AlienAPI api)
+    public void processResults(Context api)
     {
         return;
     }
 
+    
 }
+
+class LoaderException extends Exception {}

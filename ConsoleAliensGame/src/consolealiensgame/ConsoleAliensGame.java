@@ -5,6 +5,8 @@
  */
 package consolealiensgame;
 
+import stockaliens.*;
+
 /**
  *
  * @author guberti
@@ -18,6 +20,13 @@ public class ConsoleAliensGame {
         SpaceGrid grid = new SpaceGrid();
         grid.addAlien(2, 2, new Martian());
         
+        try
+        {
+            JARLoader.Load("stockaliens", "Dalek");
+        } catch (Throwable t)
+        {
+            t.printStackTrace();
+        }
     }
     
 }

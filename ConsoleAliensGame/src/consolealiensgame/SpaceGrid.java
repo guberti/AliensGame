@@ -8,6 +8,7 @@ package consolealiensgame;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import alieninterfaces.*;
 
 /**
  *
@@ -24,7 +25,7 @@ public class SpaceGrid {
     
     public void moveAliens() {
         for (int i = 0; i < aliens.size(); i++) {
-            View view = getAlienView(i);
+            ViewImplementation view = getAlienView(i);
             try {
                 aliens.get(i).move(view);
             } catch (Exception ex) {
@@ -111,7 +112,7 @@ public class SpaceGrid {
         Action[] actions = new Action[aliens.size()];
         
         for (int i = 0; i < aliens.size(); i++) {
-            View view = getAlienView(i);
+            ViewImplementation view = getAlienView(i);
             
             try {
                 // Note: getAction() checks validity
@@ -139,17 +140,17 @@ public class SpaceGrid {
                     // Add in the alien to the end of the list so actions
                     // are not executed on it this turn
                     // TODO add code to spawn species relevant offspring here
-                    Alien alien = new Martian();
+                    // e.g. Alien alien = new Martian();
                     
                     aliens.add(new AlienContainer(
                         aliens.get(i).x, 
                         aliens.get(i).y,
-                        alien, actions[i].power, 1));
+                        /*alien */ null, actions[i].power, 1));
             }
         }
     }
     
-    private View getAlienView(int index) {
+    private ViewImplementation getAlienView(int index) {
         // Create the alien's view
         int size = aliens.get(index).tech;
         int cornerX = aliens.get(index).x - size;
@@ -170,7 +171,7 @@ public class SpaceGrid {
             }
         }
 
-        return new View(view, cornerX, cornerY, size);
+        return new ViewImplementation(view, cornerX, cornerY, size);
     }
             
     private int maxValue(int[] array) {

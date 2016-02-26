@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package consolealiensgame;
+package alieninterfaces;
 
 /**
  *
- * @author guberti
+ * @author gmein
  */
 public class MoveDir {
     int xChange;

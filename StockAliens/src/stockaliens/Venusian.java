@@ -1,13 +1,15 @@
 /*
  * 
  */
-package consolealiensgame;
+package stockaliens;
+
+import alieninterfaces.*;
 
 /**
  *
  * @author guberti
  */
-public class Venusian extends Alien {
+public class Venusian implements Alien {
     int currentDirX;
     int currentDirY;
     public Venusian() {
@@ -17,7 +19,7 @@ public class Venusian extends Alien {
     }
     
     // Move Function
-    public MoveDir getMove(AlienAPI api) {
+    public MoveDir getMove(Context api) {
         
         return new MoveDir(currentDirX, currentDirY);
     }
@@ -32,11 +34,11 @@ public class Venusian extends Alien {
         return Math.min(api.energy(), api.tech()) / 2;
     }*/
     
-    public Action getAction(AlienAPI api) {
+    public Action getAction(Context api) {
         return new Action(ActionCode.Gain);
     }
     
-    public void processResults(AlienAPI api) {
+    public void processResults(Context api) {
         return;
     }
 
