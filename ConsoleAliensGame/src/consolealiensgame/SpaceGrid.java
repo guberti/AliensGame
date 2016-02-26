@@ -101,7 +101,7 @@ public class SpaceGrid {
     
     public void resetMoves() {
         aliens.stream().forEach((alien) -> {
-            alien.action = false;
+            alien.fought = false;
         });
     }
     
@@ -126,6 +126,17 @@ public class SpaceGrid {
         
         for (int i = 0; i < actions.length; i++) {
             switch (actions[i].code) {
+                case Fight:
+                    if (aliens.get(i).fought) {
+                        break;
+                    }
+                    
+                    List<AlienContainer> fightingAliens = new ArrayList<>();
+                    fightingAliens.add(aliens.get(i));
+                    
+                    for (int k = i + 1; k < aliens.size(); i++) {
+                    }
+                    
                 case Gain: 
                     aliens.get(i).energy += Math.floor(aliens.get(i).tech/10) + 1;
                     continue;

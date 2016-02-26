@@ -18,7 +18,7 @@ public class AlienContainer {
     
     public int x;
     public int y;
-    public boolean action; // Whether the alien has performed an action this turn
+    public boolean fought; // Whether the alien has performed an action this turn
     
     // Declare stats here
     
@@ -27,6 +27,7 @@ public class AlienContainer {
         this.energy = energy;
         this.tech = tech;
         this.api = new AlienAPI(this);
+        this.fought = false;
         
     }
     
