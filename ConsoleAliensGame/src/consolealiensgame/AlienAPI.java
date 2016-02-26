@@ -17,23 +17,23 @@ public class AlienAPI {
         this.aC = aC;
     }
     
-    public int energy() {
+    public int getEnergy() {
         return aC.energy;
     }
     
-    public int tech() {
+    public int getTech() {
         return aC.tech;
     }
     
-    public int x() {
+    public int getX() {
         return aC.x;
     }
     
-    public int y() {
+    public int getY() {
         return aC.y;
     }
     
-    public View view() {
+    public View getView() {
         return view;
     }
 }
