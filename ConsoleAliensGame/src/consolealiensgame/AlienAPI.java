@@ -14,6 +14,7 @@ import alieninterfaces.*;
 public class AlienAPI implements Context {
     private AlienContainer aC;
     ViewImplementation view;
+    final boolean debug = true;
     
     AlienAPI(AlienContainer aC) {
         this.aC = aC;
@@ -37,5 +38,11 @@ public class AlienAPI implements Context {
     
     public View getView() {
         return view;
+    }
+    
+    public void debugOut(String s) {
+        if (debug) {
+            System.err.println("DEBUG: " + s);
+        }
     }
 }

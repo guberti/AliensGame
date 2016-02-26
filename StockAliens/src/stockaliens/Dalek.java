@@ -16,17 +16,19 @@ public class Dalek implements Alien {
 
     Random rand;
     final boolean debug = true;
+    
+    
+    
 
     public Dalek() {
         rand = new Random();
-
-        if (debug) {
-            System.out.println("Dalek created");
-        }
     }
 
     // Martians move left, right, left, right
     public MoveDir getMove(Context api) {
+        
+        api.debugOut("Dalek Move requested");
+        
         
         int move_energy;
 
@@ -50,8 +52,12 @@ public class Dalek implements Alien {
     }
 
     public Action getAction(Context api) {
+        
+        api.debugOut("Dalek Action requested");
+        
         View view = api.getView();
 
+        
         // catch and shenanigans
         try {
             // is there another alien on our position?
@@ -79,6 +85,7 @@ public class Dalek implements Alien {
     }
 
     public void processResults(Context api) {
+        api.debugOut("Dalek processing results");
         return;
     }
 

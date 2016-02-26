@@ -16,4 +16,5 @@ public interface Context
     int getX();
     int getY();
     View getView();
+    void debugOut(String s);
 }
