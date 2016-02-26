@@ -5,6 +5,8 @@
  */
 package consolealiensgame;
 
+import java.lang.reflect.Constructor;
+import alieninterfaces.*;
 import stockaliens.*;
 
 /**
@@ -22,7 +24,8 @@ public class ConsoleAliensGame {
         
         try
         {
-            JARLoader.Load("stockaliens", "Dalek");
+            Constructor<?> cs = JARLoader.Load("stockaliens", "Dalek");
+            Alien a = (Alien) cs.newInstance();
         } catch (Throwable t)
         {
             t.printStackTrace();

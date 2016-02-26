@@ -78,21 +78,15 @@ public class JARLoader
         }
     }
 
-    public static void Load(String packageName, String className) throws IOException, SecurityException, ClassNotFoundException, IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException
+    public static Constructor<?> Load(String packageName, String className) throws IOException, SecurityException, ClassNotFoundException, IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException
     {
         addFile(packageName+".jar");
         Constructor<?> cs = ClassLoader.getSystemClassLoader().loadClass(packageName + "." + className).getConstructor();
-        Alien instance = (Alien) cs.newInstance();
-
-        try
-        {
-            instance.getMove(null);
-        } catch (Throwable t)
-        {
-            t.printStackTrace();
-            System.out.println("JAR loader test successfull.");
-        }
+        return cs;
     }
+
+    
+    
     /* alternative code
      public static void test2()
      {
