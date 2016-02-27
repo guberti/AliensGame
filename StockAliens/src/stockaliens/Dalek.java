@@ -15,25 +15,34 @@ import java.util.Random;
 public class Dalek implements Alien {
 
     Random rand;
+    Context ctx;
+    
     final boolean debug = true;
     
     
     
 
     public Dalek() {
+    }
+    
+    public void init(Context game_ctx) {
         rand = new Random();
+        ctx = game_ctx;
+        ctx.debugOut("Dalek initialized");
+
+        
     }
 
     // Martians move left, right, left, right
-    public MoveDir getMove(Context api) {
+    public MoveDir getMove() {
         
-        api.debugOut("Dalek Move requested");
+        ctx.debugOut("Dalek Move requested");
         
         
         int move_energy;
 
         // don't move more than you have tech
-        move_energy = Math.min(api.getEnergy(), api.getTech());
+        move_energy = Math.min(ctx.getEnergy(), ctx.getTech());
         // don't move more than 5, leave energy for other stuff
         move_energy = Math.min(move_energy, 5);
 
@@ -45,31 +54,31 @@ public class Dalek implements Alien {
         int y = move_energy;
 
         // don't move off the board
-        x = Math.min(api.getX(), x);
-        y = Math.min(api.getY(), y);
+        x = Math.min(ctx.getX(), x);
+        y = Math.min(ctx.getY(), y);
 
         return new MoveDir(x, y);
     }
 
-    public Action getAction(Context api) {
+    public Action getAction() {
         
-        api.debugOut("Dalek Action requested");
+        ctx.debugOut("Dalek Action requested");
         
-        View view = api.getView();
+        View view = ctx.getView();
 
         
         // catch and shenanigans
         try {
             // is there another alien on our position?
-            if (view.isAlienAtPos(api.getX(), api.getY())) {
+            if (view.isAlienAtPos(ctx.getX(), ctx.getY())) {
                 // if so, do we have any energy?
-                if (api.getEnergy() < 3) {
+                if (ctx.getEnergy() < 3) {
                     // no, lie still and start praying
                     return new Action(ActionCode.Gain);
                 }
 
                 // or, spend our energy on fighting
-                return new Action(ActionCode.Fight, api.getEnergy() - 2);
+                return new Action(ActionCode.Fight, ctx.getEnergy() - 2);
             }
         } catch (Exception e) {
             // do something here to deal with errors
@@ -78,14 +87,14 @@ public class Dalek implements Alien {
         //
         // if we have spare energy, research tech
         //
-        if (api.getEnergy() > (api.getTech() + 2)) {
+        if (ctx.getEnergy() > (ctx.getTech() + 2)) {
             return new Action(ActionCode.Research);
         }
         return new Action(ActionCode.Gain);
     }
 
-    public void processResults(Context api) {
-        api.debugOut("Dalek processing results");
+    public void processResults() {
+        ctx.debugOut("Dalek processing results");
         return;
     }
 

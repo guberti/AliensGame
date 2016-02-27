@@ -20,12 +20,11 @@ public class ConsoleAliensGame {
      */
     public static void main(String[] args) {
         SpaceGrid grid = new SpaceGrid();
-        grid.addAlien(2, 2, new Martian());
         
         try
         {
             Constructor<?> cs = JARLoader.Load("stockaliens", "Dalek");
-            Alien a = (Alien) cs.newInstance();
+            grid.addAlien(2, 2, "stockaliens", "Dalek", cs);
         } catch (Throwable t)
         {
             t.printStackTrace();
