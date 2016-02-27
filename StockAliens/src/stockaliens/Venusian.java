@@ -12,14 +12,16 @@ import alieninterfaces.*;
 public class Venusian implements Alien {
     int currentDirX;
     int currentDirY;
-    public Venusian() {
+    Context ctx;
+    
+    public void init(Context ctx) {
         currentDirX = 0;
         currentDirY = 0;
-        
+        this.ctx = ctx;
     }
     
     // Move Function
-    public MoveDir getMove(Context api) {
+    public MoveDir getMove() {
         
         return new MoveDir(currentDirX, currentDirY);
     }
@@ -34,11 +36,11 @@ public class Venusian implements Alien {
         return Math.min(api.energy(), api.tech()) / 2;
     }*/
     
-    public Action getAction(Context api) {
+    public Action getAction() {
         return new Action(ActionCode.Gain);
     }
     
-    public void processResults(Context api) {
+    public void processResults() {
         return;
     }
 

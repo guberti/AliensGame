@@ -8,6 +8,7 @@ package consolealiensgame;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.reflect.Constructor;
 import alieninterfaces.*;
 
 /**
@@ -145,7 +146,10 @@ public class SpaceGrid {
                     aliens.add(new AlienContainer(
                         aliens.get(i).x, 
                         aliens.get(i).y,
-                        /*alien */ null, actions[i].power, 1));
+                        aliens.get(i).alienPackageName,
+                        aliens.get(i).alienClassName,
+                        aliens.get(i).alienConstructor,
+                        actions[i].power, 1));
             }
         }
     }
@@ -184,8 +188,8 @@ public class SpaceGrid {
         return max;
     }
     
-    void addAlien(int x, int y, Alien alien) {
-        AlienContainer aC = new AlienContainer(x, y, alien, 1, 1);
+    void addAlien(int x, int y, String alienPackageName, String alienClassName, Constructor<?> cns) {
+        AlienContainer aC = new AlienContainer(x, y, alienPackageName, alienClassName, cns, 1, 1);
         aliens.add(aC);
     }
     

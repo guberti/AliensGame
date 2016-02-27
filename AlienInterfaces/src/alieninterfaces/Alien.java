@@ -11,7 +11,8 @@ package alieninterfaces;
  */
 public interface Alien
 {
-    MoveDir getMove(Context api);
-    Action getAction(Context api);
-    void processResults(Context api); 
+    void init(Context ctx);
+    MoveDir getMove();
+    Action getAction();
+    void processResults(); 
 }
