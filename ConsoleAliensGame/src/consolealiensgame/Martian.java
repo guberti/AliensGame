@@ -15,18 +15,25 @@ public class Martian extends Alien {
         HorizontalMove = 0;
         VerticalMove = 0;
     }
-    
+
     // Martians move left, right, left, right
     public MoveDir getMove(AlienAPI api) {
-        return new MoveDir(0, 0);
+        return new MoveDir(api.energy(), 0);
     }
 
     public Action getAction(AlienAPI api) {
-        if(api.view.isAlienAtPos(api.x(), api.y()))
+        try
         {
-            return new Action(ActionCode.Fight);
+            if(api.view.isAlienAtPos(api.x(), api.y()))
+            {
+                return new Action(ActionCode.Fight, Math.max(api.energy() - 2, 2));
+            }
+        }catch (Exception e)
+        {
+            
         }
-        else if(api.energy()< 2)
+        
+        if(api.energy()< 2)
         {
             return new Action(ActionCode.Gain);
         }
