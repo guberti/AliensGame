@@ -6,12 +6,17 @@
 package consolealiensgame;
 
 import alieninterfaces.*;
+import java.lang.reflect.Constructor;
+
 
 /**
  *
  * @author guberti
  */
 public class AlienContainer {
+    public final String alienPackageName;
+    public final String alienClassName;
+    public final Constructor<?> alienConstructor;
     private final Alien alien;
     private final AlienAPI api;
     
@@ -26,19 +31,45 @@ public class AlienContainer {
     
     // Declare stats here
     
+<<<<<<< HEAD
     public AlienContainer(int x, int y, Alien alien, int energy, int tech, String species) {
         this.alien = alien;
+=======
+    
+    //
+    // Heads up: This constructs an AlienContainer and contained Alien
+    //
+    public AlienContainer(int x, int y, String alienPackageName, String alienClassName, Constructor<?> cns, int energy, int tech) {
+        Alien a;
+        
+        this.alienPackageName = alienPackageName;
+        this.alienClassName = alienClassName;
+        this.alienConstructor = cns;
+>>>>>>> master
         this.energy = energy;
         this.tech = tech;
         this.api = new AlienAPI(this);
         this.species = species;
         
+        // construct and initialize alien
+        
+        try
+        {
+            a = (Alien) cns.newInstance();
+            a.init(this.api);
+        } catch (Throwable t)
+        {
+            a = null;
+            t.printStackTrace();
+        }
+        
+        this.alien = a;
     }
     
     public void move(ViewImplementation view) throws NotEnoughTechException {
         // Whether the move goes off the board will be determined by the grid
         api.view = view;
-        MoveDir direction = alien.getMove(api);
+        MoveDir direction = alien.getMove();
         checkMove(direction); // Throws an exception if illegal
         x += direction.x();
         y += direction.y();
@@ -50,7 +81,7 @@ public class AlienContainer {
     
     public Action getAction(ViewImplementation view) throws NotEnoughEnergyException, UnknownActionException {
         api.view = view;
-        Action action = alien.getAction(api);
+        Action action = alien.getAction();
         switch (action.code) {
             case None: 
             case Gain:
