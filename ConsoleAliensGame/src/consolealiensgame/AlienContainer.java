@@ -17,18 +17,21 @@ public class AlienContainer {
     
     int tech;
     int energy;
-    
+    String species;
+
+    boolean fought;
     public int x;
     public int y;
     public boolean action; // Whether the alien has performed an action this turn
     
     // Declare stats here
     
-    public AlienContainer(int x, int y, Alien alien, int energy, int tech) {
+    public AlienContainer(int x, int y, Alien alien, int energy, int tech, String species) {
         this.alien = alien;
         this.energy = energy;
         this.tech = tech;
         this.api = new AlienAPI(this);
+        this.species = species;
         
     }
     
@@ -42,7 +45,7 @@ public class AlienContainer {
     }
     
     public void kill() {
-        energy = 0;
+        energy = Integer.MIN_VALUE;
     }
     
     public Action getAction(ViewImplementation view) throws NotEnoughEnergyException, UnknownActionException {
