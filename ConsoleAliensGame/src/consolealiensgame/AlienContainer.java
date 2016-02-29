@@ -22,13 +22,13 @@ public class AlienContainer {
     
     int tech;
     int energy;
-    
+
+    boolean fought;
     public int x;
     public int y;
     public boolean action; // Whether the alien has performed an action this turn
     
     // Declare stats here
-    
     
     //
     // Heads up: This constructs an AlienContainer and contained Alien
@@ -68,7 +68,7 @@ public class AlienContainer {
     }
     
     public void kill() {
-        energy = 0;
+        energy = Integer.MIN_VALUE;
     }
     
     public Action getAction(ViewImplementation view) throws NotEnoughEnergyException, UnknownActionException {
