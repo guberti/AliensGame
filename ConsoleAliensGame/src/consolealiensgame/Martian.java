@@ -2,7 +2,7 @@
  * 
  */
 package consolealiensgame;
-
+import java.util.Random;
 /**
  *
  * @author guberti
@@ -10,15 +10,34 @@ package consolealiensgame;
 public class Martian extends Alien {
     int HorizontalMove;
     int VerticalMove;
-    
-    public Martian() {
-        HorizontalMove = 0;
-        VerticalMove = 0;
+    int Remainder;
+    private static Random rnd = new Random();
+    public static boolean getRandomBoolean() {
+        return rnd.nextBoolean();
     }
 
-    // Martians move left, right, left, right
+    public Martian(AlienAPI api) {
+        
+        Remainder = api.tech() % 2;
+        HorizontalMove = (api.tech()-Remainder)/2;
+        VerticalMove = api.tech()- HorizontalMove;
+        if(getRandomBoolean() == true)
+        {
+            HorizontalMove *= -1;
+        }
+        if(getRandomBoolean() == true)
+        {
+            VerticalMove *= -1;
+        }
+    }
+
+    Martian() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     public MoveDir getMove(AlienAPI api) {
-        return new MoveDir(api.energy(), 0);
+        return new MoveDir(HorizontalMove, VerticalMove);
     }
 
     public Action getAction(AlienAPI api) {
@@ -30,7 +49,7 @@ public class Martian extends Alien {
             }
         }catch (Exception e)
         {
-            
+        return new Action(ActionCode.Fight, api.energy());
         }
         
         if(api.energy()< 2)
