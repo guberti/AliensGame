@@ -183,8 +183,8 @@ public class SpaceGrid {
                     for (int k = 0; k < fightingAliens.size(); k++) {
                         // If the alien is a loser and of a different species than the winner
                         if (k != winner &&
-                                aliens.get(fightingAliens.get(k)).species ==
-                                aliens.get(fightingAliens.get(winner)).species) {
+                                aliens.get(fightingAliens.get(k)).alienConstructor ==
+                                aliens.get(fightingAliens.get(winner)).alienConstructor) {
                             
                             // If the alien was beaten by more than five energy points
                             if (actions[fightingAliens.get(winner)].power < 
@@ -267,6 +267,15 @@ public class SpaceGrid {
         return index;
     }
     
+     private int maxValue(int[] array) {
+         int max = Integer.MIN_VALUE;
+        for (int item: array) {
+            if (item > max) {
+                max = item;
+            }
+        }
+        return max;
+    }
     void addAlien(int x, int y, String alienPackageName, String alienClassName, Constructor<?> cns) {
         AlienContainer aC = new AlienContainer(x, y, alienPackageName, alienClassName, cns, 1, 1);
         aliens.add(aC);

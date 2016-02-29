@@ -22,7 +22,6 @@ public class AlienContainer {
     
     int tech;
     int energy;
-    String species;
 
     boolean fought;
     public int x;
@@ -30,11 +29,6 @@ public class AlienContainer {
     public boolean action; // Whether the alien has performed an action this turn
     
     // Declare stats here
-    
-<<<<<<< HEAD
-    public AlienContainer(int x, int y, Alien alien, int energy, int tech, String species) {
-        this.alien = alien;
-=======
     
     //
     // Heads up: This constructs an AlienContainer and contained Alien
@@ -45,11 +39,9 @@ public class AlienContainer {
         this.alienPackageName = alienPackageName;
         this.alienClassName = alienClassName;
         this.alienConstructor = cns;
->>>>>>> master
         this.energy = energy;
         this.tech = tech;
         this.api = new AlienAPI(this);
-        this.species = species;
         
         // construct and initialize alien
         
